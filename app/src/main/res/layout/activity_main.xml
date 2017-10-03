@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="neelk.problemsolvinggame.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <Button
+        android:id="@+id/level1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/home"
+        android:layout_below="@+id/home"
+        android:layout_marginEnd="61dp"
+        android:text="+"
+        android:onClick="onClick" />
+
+    <Button
+        android:id="@+id/level2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:onClick="onClick"
+        android:layout_below="@+id/level1"
+        android:layout_alignStart="@+id/level1" />
+
+    <Button
+        android:id="@+id/level3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:onClick="onClick"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/level2"
+        android:layout_alignStart="@+id/level2" />
+
+    <Button
+        android:id="@+id/level4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/level3"
+        android:layout_below="@+id/level3"
+        android:layout_marginTop="11dp"
+        android:inputType="none"
+        android:onClick="onClick"
+        android:text="%" />
+
+    <EditText
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:inputType="none"
+        android:enabled="false"
+        android:text="Home" />
+</android.widget.RelativeLayout>
