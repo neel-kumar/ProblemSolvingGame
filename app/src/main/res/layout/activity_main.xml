@@ -58,4 +58,11 @@
         android:inputType="none"
         android:enabled="false"
         android:text="Home" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*0"
+        android:layout_alignParentBottom="true" />
 </android.widget.RelativeLayout>

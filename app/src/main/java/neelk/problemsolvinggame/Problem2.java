@@ -2,13 +2,13 @@ package neelk.problemsolvinggame;
 
 import java.util.Random;
 
-public class Problem {
+public class Problem2 {
     private final int MAX;
     long right;
     long left;
     int notShow;
 
-    Problem(int MAX) {
+    Problem2(int MAX) {
         right = 0;
         left = 0;
         this.MAX = MAX;
@@ -31,15 +31,15 @@ public class Problem {
             valueString = Long.toString(value);
         }
 
-        long result = left + right;
+        long result = left - right;
         String output = "";
 
         if (notShow == 0) {
-            output = valueString + " + " + right + " = " + result;
+            output = valueString + " - " + right + " = " + result;
         } else if (notShow == 1) {
-            output = "" + left + " + " + valueString + " = " + result;
+            output = "" + left + " - " + valueString + " = " + result;
         } else {
-            output = "" + left + " + " + right + " = " + valueString;
+            output = "" + left + " - " + right + " = " + valueString;
         }
 
         return output;
@@ -50,7 +50,7 @@ public class Problem {
         } else if(notShow ==1){
             return solution == right;
         } else{
-            return solution == left + right;
+            return solution == left - right;
         }
     }
 

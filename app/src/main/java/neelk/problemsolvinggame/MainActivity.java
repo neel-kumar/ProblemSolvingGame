@@ -65,7 +65,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } else if (view == l2) {
             Log.d(TAG, "Starting level2 activity");
             //the transition from MainActivity to Level2Activity
-//            startActivity(new Intent(MainActivity.this, Level2Activity.class));
+              startActivity(new Intent(MainActivity.this, Level2Activity.class));
+        } else if (view == l3) {
+            Log.d(TAG, "Starting level3 activity");
+            //the transition from MainActivity to Level3Activity
+            startActivity(new Intent(MainActivity.this, Level3Activity.class));
+        }  else if (view == l4) {
+            Log.d(TAG, "Starting level4 activity");
+            //the transition from MainActivity to Level4Activity
+            startActivity(new Intent(MainActivity.this, Level4Activity.class));
         }
 
     }
