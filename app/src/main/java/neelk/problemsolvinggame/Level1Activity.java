@@ -1,7 +1,9 @@
 package neelk.problemsolvinggame;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +21,20 @@ public class Level1Activity extends AppCompatActivity implements View.OnClickLis
     private Problem pb1, pb2, pb3, pb4;
     int p;
     long v1, v2, v3, v4;
+    int score;
 
+    public int readScore() {
+        SharedPreferences sharedPref = getSharedPreferences("TOTAL_SCORE", Context.MODE_PRIVATE);
+        int Score = sharedPref.getInt("score", 0);
+        return Score;
+    }
+
+    public void saveScore(int s) {
+        SharedPreferences sharedPref = getSharedPreferences("TOTAL_SCORE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("score", s);
+        editor.commit();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +77,7 @@ public class Level1Activity extends AppCompatActivity implements View.OnClickLis
         v3 = -1;
         v4 = -1;
 
+        score = readScore();
     }
 
     public void onClick(View view) {
@@ -134,7 +150,7 @@ public class Level1Activity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void OK() {
-       if (v1 == -1 || v2 == -1 || v3 == -1 || v4 == -1) {
+        if (v1 == -1 || v2 == -1 || v3 == -1 || v4 == -1) {
         if (v1 == -1) {
             p1.setTextColor(Color.parseColor("#00EA00"));
         } else {
@@ -160,7 +176,8 @@ public class Level1Activity extends AppCompatActivity implements View.OnClickLis
         }
     } else{
             if((pb1.checkSolution(v1) && pb2.checkSolution(v2) &&
-                    pb3.checkSolution(v3) && pb4.checkSolution(v4)) == false){
+                    pb3.checkSolution(v3) && pb4.checkSolution(v4)) == false) {
+                saveScore(score - 1);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("WRONG TRY AGAIN")
                         .setCancelable(false)
@@ -176,7 +193,8 @@ public class Level1Activity extends AppCompatActivity implements View.OnClickLis
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
-            } else{
+            } else {
+                saveScore(score + 1);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Well Done!")
                         .setCancelable(false)

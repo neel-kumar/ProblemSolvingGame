@@ -1,11 +1,12 @@
 package neelk.problemsolvinggame;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,19 @@ public class Level4Activity extends AppCompatActivity implements View.OnClickLis
     private Problem4 pb1, pb2, pb3, pb4;
     int p;
     long v1, v2, v3, v4;
+    int score;
+
+    public int readScore(){
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        int Score = sharedPref.getInt("score", 0);
+        return Score;
+    }
+    public void saveScore(int score){
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("score", score);
+        editor.apply();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +76,7 @@ public class Level4Activity extends AppCompatActivity implements View.OnClickLis
         v3 = -1;
         v4 = -1;
 
+        score = readScore();
     }
 
     public void onClick(View view) {
@@ -108,25 +123,25 @@ public class Level4Activity extends AppCompatActivity implements View.OnClickLis
         }
 
         else if (view == b0) {
-            P(0);
+            setText(0);
         } else if (view == b1) {
-            P(1);
+            setText(1);
         }else if (view == b2) {
-            P(2);
+            setText(2);
         } else if (view == b3) {
-            P(3);
+            setText(3);
         }else if (view == b4) {
-            P(4);
+            setText(4);
         } else if (view == b5) {
-            P(5);
+            setText(5);
         }else if (view == b6) {
-            P(6);
+            setText(6);
         } else if (view == b7) {
-            P(7);
+            setText(7);
         }else if (view == b8) {
-            P(8);
+            setText(8);
         } else if (view == b9) {
-            P(9);
+            setText(9);
         }
         else if(view == ok){
             OK();
@@ -161,6 +176,7 @@ public class Level4Activity extends AppCompatActivity implements View.OnClickLis
         } else{
             if((pb1.checkSolution(v1) && pb2.checkSolution(v2) &&
                     pb3.checkSolution(v3) && pb4.checkSolution(v4)) == false){
+                saveScore(score - 1);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("WRONG TRY AGAIN")
                         .setCancelable(false)
@@ -177,6 +193,7 @@ public class Level4Activity extends AppCompatActivity implements View.OnClickLis
                 AlertDialog alert = builder.create();
                 alert.show();
             } else{
+                saveScore(score + 1);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Well Done!")
                         .setCancelable(false)
@@ -227,7 +244,7 @@ public class Level4Activity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void P (int i){
+    public void setText(int i){
         if (p == 1) {
             p1.setText(pb1.getString(Button(i)));
             // p1.setText(valueString(i));

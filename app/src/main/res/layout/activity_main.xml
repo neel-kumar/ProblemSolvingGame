@@ -52,17 +52,11 @@
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:ems="10"
         android:inputType="none"
         android:enabled="false"
-        android:text="Home" />
+        android:text="Home              *0"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="*0"
-        android:layout_alignParentBottom="true" />
 </android.widget.RelativeLayout>

@@ -2,13 +2,17 @@ package neelk.problemsolvinggame;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
+import static neelk.problemsolvinggame.R.id.home;
 import static neelk.problemsolvinggame.R.id.level1;
 import static neelk.problemsolvinggame.R.id.level2;
 import static neelk.problemsolvinggame.R.id.level3;
@@ -20,14 +24,31 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private Button l1, l2, l3, l4;
 
+    private EditText Home;
+    int score;
+    public int readScore(){
+        SharedPreferences sharedPref = getSharedPreferences("TOTAL_SCORE", Context.MODE_PRIVATE);
+        int Score = sharedPref.getInt("score", 0);
+        return Score;
+    }
+    public void saveScore(int score){
+        SharedPreferences sharedPref = getSharedPreferences("TOTAL_SCORE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("score", score);
+        editor.apply();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        score = readScore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         l1 = findViewById(level1);
         l2 = findViewById(level2);
         l3 = findViewById(level3);
         l4 = findViewById(level4);
+        Home = findViewById(home);
+        Home.setText("Home              *" + score);
     }
 
     public void onBackPressed() {
@@ -75,6 +96,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
             //the transition from MainActivity to Level4Activity
             startActivity(new Intent(MainActivity.this, Level4Activity.class));
         }
+        // saveScore(score);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Home.setText("Home              *" + readScore());
     }
 }
