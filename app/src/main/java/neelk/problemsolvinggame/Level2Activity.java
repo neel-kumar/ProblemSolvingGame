@@ -23,16 +23,17 @@ public class Level2Activity extends AppCompatActivity implements View.OnClickLis
     long v1, v2, v3, v4;
     int score;
 
-    public int readScore(){
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+    public int readScore() {
+        SharedPreferences sharedPref = getSharedPreferences("TOTAL_SCORE", Context.MODE_PRIVATE);
         int Score = sharedPref.getInt("score", 0);
         return Score;
     }
-    public void saveScore(int score){
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+    public void saveScore(int s) {
+        SharedPreferences sharedPref = getSharedPreferences("TOTAL_SCORE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("score", score);
-        editor.apply();
+        editor.putInt("score", s);
+        editor.commit();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

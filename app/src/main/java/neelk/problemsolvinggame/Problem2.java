@@ -15,10 +15,12 @@ public class Problem2 {
     }
 
     public void create() {
-        Random r = new Random();
-        right = r.nextInt(MAX);
-        left = r.nextInt(MAX);
-        notShow = r.nextInt(3);
+        while (left <= right) {
+            Random r = new Random();
+            right = r.nextInt(MAX);
+            left = r.nextInt(MAX);
+            notShow = r.nextInt(3);
+        }
     }
 
     public String getString(final long value) {
